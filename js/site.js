@@ -47,7 +47,20 @@ document.getElementById("submit").addEventListener("click", function(){
                 principal_payment = principal_payment.toFixed(2)
                 total_interest = interest_payment
                 remaining_balance = loan_amount - principal_payment
-            }else{
+            }else if (i == term){
+                let total_monthly_payment2 = remaining_balance;
+                remaining_balance = remaining_balance - principal_payment
+                remaining_balance = Math.round((remaining_balance + Number.EPSILON) * 100) / 100
+                interest_payment = remaining_balance*interest/1200
+                interest_payment = Math.round((interest_payment + Number.EPSILON) * 100) / 100
+                principal_payment = total_monthly_payment2 - interest_payment
+                principal_payment = Math.round((principal_payment + Number.EPSILON) * 100) / 100
+                total_interest += interest_payment
+                total_interest = Math.round((total_interest + Number.EPSILON) * 100) / 100
+                total_monthly_payment = total_monthly_payment2
+                remaining_balance = 0
+            }
+            else{
                 remaining_balance = remaining_balance - principal_payment
                 remaining_balance = Math.round((remaining_balance + Number.EPSILON) * 100) / 100
                 interest_payment = remaining_balance*interest/1200
@@ -56,7 +69,7 @@ document.getElementById("submit").addEventListener("click", function(){
                 principal_payment = Math.round((principal_payment + Number.EPSILON) * 100) / 100
                 total_interest += interest_payment
                 total_interest = Math.round((total_interest + Number.EPSILON) * 100) / 100
-            }
+            } 
             document.getElementById("table").innerHTML += `<tr><th scope="row">${i}</th><th>${total_monthly_payment}</th><th>${principal_payment}</th><th>${interest_payment}</th><th>${total_interest}</th><th>${remaining_balance}</th></tr>`
             
         }
