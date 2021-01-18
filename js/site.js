@@ -3,11 +3,20 @@ document.getElementById("submit").addEventListener("click", function(){
         Swal.fire({
             position: 'center',
             icon: 'error',
-            title: "You Need To Enter Into All Blanks",
+            title: "You Need To Enter Into All Blanks >.<",
             showConfirmButton: false,
             timer: 2000
         })
-    }else {
+    }else if (document.getElementById("loan").value < 0 || document.getElementById("term").value < 0 || document.getElementById("interest").value < 0){
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: "You Need To Enter A Positive Number >.<",
+            showConfirmButton: false,
+            timer: 2000
+        })
+    }
+    else {
     Swal.fire({
         position: 'center',
         icon: 'success',
