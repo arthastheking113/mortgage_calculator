@@ -51,11 +51,14 @@ document.getElementById("submit").addEventListener("click", function(){
             if (i == 1){
                 remaining_balance = loan_amount
                 remaining_balance = remaining_balance
+                remaining_balance = Math.round((remaining_balance + Number.EPSILON) * 100) / 100
                 interest_payment = remaining_balance*interest/1200
+                interest_payment = Math.round((interest_payment + Number.EPSILON) * 100) / 100
                 principal_payment = total_monthly_payment - interest_payment
-                principal_payment = principal_payment.toFixed(2)
+                principal_payment = Math.round((principal_payment + Number.EPSILON) * 100) / 100
                 total_interest = interest_payment
                 remaining_balance = loan_amount - principal_payment
+                remaining_balance = Math.round((remaining_balance + Number.EPSILON) * 100) / 100
             }else if (i == term){
                 let total_monthly_payment2 = remaining_balance;
                 remaining_balance = remaining_balance - principal_payment
